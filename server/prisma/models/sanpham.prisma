@@ -1,0 +1,18 @@
+model sanpham {
+  id              Int             @id @default(autoincrement())              // INT AUTO_INCREMENT
+  loaiSanPhamId   Int                                                     // FK -> loaisanpham
+  tenSanPham      String          @db.VarChar(100)                          // VARCHAR(100)
+  giaSanPham      Float                                                  // FLOAT
+  soLuong         Int                                                    // INT
+  donViTinh       String          @db.VarChar(20)                           // VARCHAR(20)
+  moTa            String?         @db.VarChar(255)                          // VARCHAR(255), NULLABLE
+  hinhAnh         String?         @db.VarChar(255)                          // VARCHAR(255), NULLABLE
+  trangThai       Int             @db.TinyInt                               // TINYINT
+  createdAt       DateTime        @default(now())                           // DATETIME DEFAULT NOW()
+  updatedAt       DateTime        @updatedAt                                // DATETIME ON UPDATE CURRENT_TIMESTAMP
+
+  chitietdatsan   chitietdatsan[]                                           // Quan hệ 1-n
+  loaisanpham     loaisanpham     @relation(fields: [loaiSanPhamId], references: [id])
+
+  @@index([loaiSanPhamId])
+}

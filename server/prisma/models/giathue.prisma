@@ -1,0 +1,17 @@
+model giathue {
+  id            Int        @id @default(autoincrement())         // INT AUTO_INCREMENT PRIMARY KEY
+  sanId         Int
+  khungGioId    Int
+  thuTrongTuan  String?    @db.VarChar(10)                       // VARCHAR(10) NULL (ví dụ: "Mon", "T2", "CN")
+  giaTien       Float      @db.Float                             // FLOAT
+  moTa          String?    @db.Text                              // TEXT NULL
+  trangThai     Int        @db.TinyInt                           // TINYINT
+  createdAt     DateTime   @default(now())                       // DATETIME DEFAULT CURRENT_TIMESTAMP
+  updatedAt     DateTime   @updatedAt                            // DATETIME ON UPDATE CURRENT_TIMESTAMP
+
+  khunggio      khunggio   @relation(fields: [khungGioId], references: [id])
+  san           san        @relation(fields: [sanId], references: [id])
+
+  @@index([khungGioId])
+  @@index([sanId])
+}

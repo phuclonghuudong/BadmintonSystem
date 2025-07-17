@@ -1,0 +1,17 @@
+model nhanvien {
+  id          Int        @id @default(autoincrement())                 // INT AUTO_INCREMENT
+  hoTen       String     @db.VarChar(100)                              // VARCHAR(100)
+  email       String     @unique @db.VarChar(100)                      // VARCHAR(100) UNIQUE
+  cccd        String?    @unique @db.VarChar(20)                       // VARCHAR(20) UNIQUE NULLABLE
+  soDienThoai String     @unique @db.VarChar(20)                       // VARCHAR(20) UNIQUE
+  gioiTinh    Int?       @db.TinyInt                                   // TINYINT (NULLABLE)
+  diaChi      String?    @db.VarChar(255)                              // VARCHAR(255) (NULLABLE)
+  ngaySinh    DateTime?                                                // DATETIME (NULLABLE)
+  hinhAnh     String?    @db.VarChar(255)                              // VARCHAR(255) (NULLABLE)
+  trangThai   Int        @db.TinyInt                                   // TINYINT
+  createdAt   DateTime   @default(now())                               // DATETIME DEFAULT CURRENT_TIMESTAMP
+  updatedAt   DateTime   @updatedAt                                    // DATETIME ON UPDATE CURRENT_TIMESTAMP
+
+  datsan      datsan[]                                                 // 1-n với bảng `datsan`
+  taikhoan    taikhoan[]                                               // 1-n với bảng `taikhoan`
+}

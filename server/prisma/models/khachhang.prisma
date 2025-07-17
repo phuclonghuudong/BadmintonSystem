@@ -1,0 +1,15 @@
+model khachhang {
+  id          Int       @id @default(autoincrement())          // INT AUTO_INCREMENT PRIMARY KEY
+  hoTen       String    @db.VarChar(100)                       // VARCHAR(100)
+  email       String?   @unique @db.VarChar(100)               // VARCHAR(100) NULL UNIQUE
+  cccd        String?   @unique @db.VarChar(20)                // VARCHAR(20) NULL UNIQUE
+  soDienThoai String    @unique @db.VarChar(15)                // VARCHAR(15) UNIQUE
+  gioiTinh    Int?      @db.TinyInt                            // TINYINT NULL
+  diaChi      String?   @db.Text                               // TEXT NULL
+  ngaySinh    DateTime? @db.Date                               // DATE NULL
+  trangThai   Int       @db.TinyInt                            // TINYINT
+  createdAt   DateTime  @default(now())                        // DATETIME DEFAULT CURRENT_TIMESTAMP
+  updatedAt   DateTime  @updatedAt                             // DATETIME ON UPDATE CURRENT_TIMESTAMP
+
+  datsan      datsan[]
+}

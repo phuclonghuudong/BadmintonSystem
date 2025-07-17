@@ -1,0 +1,16 @@
+model chitietquyen {
+  id            Int              @id @default(autoincrement())         // INT AUTO_INCREMENT PRIMARY KEY
+  chucNangId    Int
+  nhomQuyenId   Int
+  hanhDong      String           @db.VarChar(50)                      // VARCHAR(50)
+  moTa          String?          @db.Text                             // TEXT NULL
+  trangThai     Int              @db.TinyInt                          // TINYINT
+  createdAt     DateTime         @default(now())                      // DATETIME DEFAULT CURRENT_TIMESTAMP
+  updatedAt     DateTime         @updatedAt                           // DATETIME ON UPDATE CURRENT_TIMESTAMP
+
+  chucnang      danhmucchucnang  @relation(fields: [chucNangId], references: [id])
+  nhomquyen     nhomquyen        @relation(fields: [nhomQuyenId], references: [id])
+
+  @@index([chucNangId])
+  @@index([nhomQuyenId])
+}

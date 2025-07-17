@@ -1,0 +1,10 @@
+model loaisanpham {
+  id               Int        @id @default(autoincrement())         // INT AUTO_INCREMENT
+  tenLoaiSanPham   String     @db.VarChar(100)                      // VARCHAR(100)
+  moTa             String?    @db.Text                              // TEXT (NULLABLE)
+  trangThai        Int        @db.TinyInt                           // TINYINT
+  createdAt        DateTime   @default(now())                       // DATETIME DEFAULT CURRENT_TIMESTAMP
+  updatedAt        DateTime   @updatedAt                            // DATETIME ON UPDATE CURRENT_TIMESTAMP
+
+  sanpham          sanpham[]                                        // Quan hệ 1-n đến bảng `sanpham`
+}

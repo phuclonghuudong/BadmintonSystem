@@ -1,0 +1,17 @@
+model san {
+  id          Int       @id @default(autoincrement())
+  loaiSanId   Int
+  tenSan      String    @db.VarChar(50)         // VARCHAR(50)
+  giaSan      Float     @db.Float               // FLOAT
+  moTa        String?   @db.Text                // TEXT (nullable)
+  hinhAnh     String?   @db.VarChar(255)        // VARCHAR(255) (nullable)
+  trangThai   Int       @db.TinyInt             // TINYINT (nếu chỉ 0/1 hoặc ít trạng thái)
+  createdAt   DateTime  @default(now())         // DATETIME DEFAULT CURRENT_TIMESTAMP
+  updatedAt   DateTime  @updatedAt              // DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE...
+
+  datsan      datsan[]
+  giathue     giathue[]
+  loaisan     loaisan   @relation(fields: [loaiSanId], references: [id])
+
+  @@index([loaiSanId])
+}

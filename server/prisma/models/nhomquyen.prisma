@@ -1,0 +1,12 @@
+model nhomquyen {
+  id            Int             @id @default(autoincrement())             // INT AUTO_INCREMENT
+  maQuyen       String          @unique @db.VarChar(50)                   // VARCHAR(50) UNIQUE (ví dụ: "ADMIN", "NHANVIEN", ...)
+  tenQuyen      String          @db.VarChar(100)                          // VARCHAR(100)
+  moTa          String?         @db.VarChar(255)                          // VARCHAR(255) NULLABLE
+  trangThai     Int             @db.TinyInt                               // TINYINT
+  createdAt     DateTime        @default(now())                           // DATETIME DEFAULT CURRENT_TIMESTAMP
+  updatedAt     DateTime        @updatedAt                                // DATETIME ON UPDATE CURRENT_TIMESTAMP
+
+  chitietquyen  chitietquyen[]                                           // Quan hệ 1-n với chitietquyen
+  taikhoan      taikhoan[]                                               // Quan hệ 1-n với taikhoan
+}

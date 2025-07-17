@@ -1,0 +1,26 @@
+model datsan {
+  id            Int             @id @default(autoincrement())         // INT AUTO_INCREMENT PRIMARY KEY
+  maDatSan      String          @db.VarChar(20)                       // VARCHAR(20)
+  sanId         Int
+  khachHangId   Int
+  nhanVienId    Int
+  ngayDat       DateTime                                              // DATETIME
+  checkIn       DateTime                                              // DATETIME
+  checkOut      DateTime                                              // DATETIME
+  giaSan        Float           @db.Float                             // FLOAT
+  tongTien      Float?          @db.Float                             // FLOAT NULL
+  thanhToan     String?         @db.VarChar(50)                       // VARCHAR(50) NULL
+  ghiChu        String?         @db.Text                              // TEXT NULL
+  trangThai     Int             @db.TinyInt                           // TINYINT
+  createdAt     DateTime        @default(now())                       // DATETIME DEFAULT CURRENT_TIMESTAMP
+  updatedAt     DateTime        @updatedAt                            // DATETIME ON UPDATE CURRENT_TIMESTAMP
+
+  chitietdatsan chitietdatsan[]
+  khachhang     khachhang       @relation(fields: [khachHangId], references: [id])
+  nhanvien      nhanvien        @relation(fields: [nhanVienId], references: [id])
+  san           san             @relation(fields: [sanId], references: [id])
+
+  @@index([khachHangId])
+  @@index([nhanVienId])
+  @@index([sanId])
+}

@@ -1,0 +1,11 @@
+model danhmucchucnang {
+  id            Int              @id @default(autoincrement())       // INT AUTO_INCREMENT PRIMARY KEY
+  maChucNang    String           @unique @db.VarChar(20)             // VARCHAR(20) UNIQUE
+  tenChucNang   String           @db.VarChar(50)                     // VARCHAR(50)
+  moTa          String?          @db.Text                            // TEXT NULL
+  trangThai     Int              @db.TinyInt                         // TINYINT
+  createdAt     DateTime         @default(now())                     // DATETIME DEFAULT CURRENT_TIMESTAMP
+  updatedAt     DateTime         @updatedAt                          // DATETIME ON UPDATE CURRENT_TIMESTAMP
+
+  chitietquyen  chitietquyen[]
+}

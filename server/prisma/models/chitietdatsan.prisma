@@ -1,0 +1,17 @@
+model chitietdatsan {
+  id         Int       @id @default(autoincrement())           // INT AUTO_INCREMENT
+  datSanId   Int
+  sanPhamId  Int
+  giaBan     Float     @db.Float                               // FLOAT
+  soLuong    Int       @db.SmallInt                            // SMALLINT (vì số lượng thường nhỏ)
+  ghiChu     String?   @db.VarChar(255)                        // VARCHAR(255) NULL
+  trangThai  Int       @db.TinyInt                             // TINYINT
+  createdAt  DateTime  @default(now())                         // DATETIME DEFAULT CURRENT_TIMESTAMP
+  updatedAt  DateTime  @updatedAt                              // DATETIME ON UPDATE CURRENT_TIMESTAMP
+
+  datsan     datsan    @relation(fields: [datSanId], references: [id])
+  sanpham    sanpham   @relation(fields: [sanPhamId], references: [id])
+
+  @@index([datSanId])
+  @@index([sanPhamId])
+}

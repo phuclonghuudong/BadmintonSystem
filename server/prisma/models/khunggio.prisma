@@ -1,0 +1,11 @@
+model khunggio {
+  id          Int        @id @default(autoincrement())        // INT AUTO_INCREMENT PRIMARY KEY
+  gioBatDau   String     @db.VarChar(10)                      // VARCHAR(10): VD "07:00"
+  gioKetThuc  String     @db.VarChar(10)                      // VARCHAR(10): VD "08:30"
+  moTa        String?    @db.Text                             // TEXT (NULLABLE)
+  trangThai   Int        @db.TinyInt                          // TINYINT (0 hoặc 1)
+  createdAt   DateTime   @default(now())                      // DATETIME DEFAULT CURRENT_TIMESTAMP
+  updatedAt   DateTime   @updatedAt                           // DATETIME ON UPDATE CURRENT_TIMESTAMP
+
+  giathue     giathue[]
+}

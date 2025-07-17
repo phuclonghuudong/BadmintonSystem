@@ -1,0 +1,20 @@
+model taikhoan {
+  id                  Int        @id @default(autoincrement())               // INT AUTO_INCREMENT
+  nhanVienId          Int                                               
+  nhomQuyenId         Int
+  tenDangNhap         String     @unique @db.VarChar(50)                     // VARCHAR(50)
+  matKhau             String     @db.VarChar(255)                            // Hashed password
+  emailDaXacThuc      Boolean?                                               // NULLABLE BOOLEAN
+  otpQuenMatKhau      String?    @db.VarChar(10)                             // OTP (optional)
+  otpHetHanLuc        DateTime?                                              // Expiry of OTP
+  refreshToken        String?    @db.VarChar(255)                            // Optional refresh token
+  trangThai           Int        @db.TinyInt                                 // TINYINT: 0/1/2 (active, banned, etc.)
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
+
+  nhanvien            nhanvien   @relation(fields: [nhanVienId], references: [id])
+  nhomquyen           nhomquyen  @relation(fields: [nhomQuyenId], references: [id])
+
+  @@index([nhanVienId])
+  @@index([nhomQuyenId])
+}
