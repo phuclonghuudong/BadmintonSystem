@@ -10,7 +10,7 @@ const ButtonComponent = ({
     white: "text-black hover:text-gray-900 hover:bg-gray-200 ",
     orange: "text-orange-500 hover:text-orange-700 hover:bg-orange-50",
     blue: "text-blue-500 hover:text-blue-700 hover:bg-blue-50 ",
-    green: "text-green-800 hover:text-green-700 hover:bg-green-50",
+    green: "text-black hover:text-green-700 hover:bg-green-50 bg-green-500",
     red: "text-black hover:text-white hover:bg-red-500 ",
     gray: "text-gray-700 hover:text-gray-800 hover:bg-gray-100",
   };

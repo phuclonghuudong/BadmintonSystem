@@ -1,7 +1,7 @@
 model sanpham {
   id              Int             @id @default(autoincrement())              // INT AUTO_INCREMENT
   loaiSanPhamId   Int                                                     // FK -> loaisanpham
-  tenSanPham      String          @db.VarChar(100)                          // VARCHAR(100)
+  tenSanPham      String          @db.VarChar(100) @unique                         // VARCHAR(100)
   giaSanPham      Float                                                  // FLOAT
   soLuong         Int                                                    // INT
   donViTinh       String          @db.VarChar(20)                           // VARCHAR(20)

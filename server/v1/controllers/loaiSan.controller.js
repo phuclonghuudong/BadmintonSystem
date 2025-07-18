@@ -13,6 +13,45 @@ const getAllLoaiSan = async (req, res, next) => {
   }
 };
 
+const getAllLoaiSanPagination = async (req, res, next) => {
+  try {
+    const {
+      page = 1,
+      pageSize = 10,
+      sortBy = "id",
+      sortOrder = "desc",
+      keyword = "",
+    } = req.query || {};
+
+    const pageNumber = parseInt(page) || 1;
+    const pageSizeNumber = parseInt(pageSize) || 10;
+
+    const result = await LoaiSanService.getAllListPagination({
+      page: pageNumber,
+      pageSize: pageSizeNumber,
+      orderBy: {
+        [sortBy]: sortOrder.toLowerCase() === "asc" ? "asc" : "desc",
+      },
+      where: keyword
+        ? {
+            tenLoaiSan: {
+              contains: keyword.toLowerCase(),
+            },
+          }
+        : {},
+    });
+
+    if (!result || result.data.length === 0) {
+      return responseHandler(res, 404, "KHÔNG TỒN TẠI DATA!", null, true);
+    }
+
+    return responseHandler(res, 200, "DANH SÁCH LOẠI SÂN (PHÂN TRANG)", result);
+  } catch (error) {
+    console.error("❌ Lỗi getAllLoaiSanPagination:", error);
+    next(error);
+  }
+};
+
 const getLoaiSanById = async (req, res, next) => {
   const { id } = req.params;
   try {
@@ -44,6 +83,11 @@ const createLoaiSan = async (req, res, next) => {
       );
     }
 
+    const existName = await LoaiSanService.findUniqueTenLoaiSan(tenLoaiSan);
+    if (existName) {
+      return responseHandler(res, 409, "LOẠI SÂN ĐÃ TỒN TẠI!", null, true);
+    }
+
     const result = await LoaiSanService.createLoaiSan({
       tenLoaiSan,
       trangThai,
@@ -60,7 +104,6 @@ const updateLoaiSan = async (req, res, next) => {
   let { tenLoaiSan, trangThai, moTa } = req.body;
   const { id } = req.params;
 
-  tenLoaiSan = tenLoaiSan?.trim();
   try {
     if (!id)
       return responseHandler(res, 400, "KHÔNG TÌM THẤY DATA!", null, true);
@@ -77,6 +120,13 @@ const updateLoaiSan = async (req, res, next) => {
     const findById = await LoaiSanService.findById(id);
     if (!findById)
       return responseHandler(res, 404, "KHÔNG TỒN TẠI DATA!", null, true);
+
+    const checkUniqueName = await LoaiSanService.findByTenLoaiSan(
+      tenLoaiSan,
+      id
+    );
+    if (checkUniqueName)
+      return responseHandler(res, 409, "LOẠI SÂN ĐÃ TỒN TẠI!", null, true);
 
     const result = await LoaiSanService.updateLoaiSan(id, {
       tenLoaiSan,
@@ -108,6 +158,7 @@ const deleteLoaiSan = async (req, res, next) => {
 
 module.exports = {
   getAllLoaiSan,
+  getAllLoaiSanPagination,
   getLoaiSanById,
   createLoaiSan,
   updateLoaiSan,

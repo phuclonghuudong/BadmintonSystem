@@ -1,7 +1,7 @@
 model san {
   id          Int       @id @default(autoincrement())
   loaiSanId   Int
-  tenSan      String    @db.VarChar(50)         // VARCHAR(50)
+  tenSan      String    @db.VarChar(50) @unique         // VARCHAR(50)
   giaSan      Float     @db.Float               // FLOAT
   moTa        String?   @db.Text                // TEXT (nullable)
   hinhAnh     String?   @db.VarChar(255)        // VARCHAR(255) (nullable)

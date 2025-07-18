@@ -1,6 +1,6 @@
 model loaisan {
   id          Int      @id @default(autoincrement())              // INT AUTO_INCREMENT PRIMARY KEY
-  tenLoaiSan  String   @db.VarChar(50)                            // VARCHAR(50) NOT NULL
+  tenLoaiSan  String   @db.VarChar(50) @unique                    // VARCHAR(50) NOT NULL
   moTa        String?  @db.Text                                   // TEXT NULL
   trangThai   Int      @db.TinyInt                                // TINYINT NOT NULL
   createdAt   DateTime @default(now())                            // DATETIME DEFAULT CURRENT_TIMESTAMP

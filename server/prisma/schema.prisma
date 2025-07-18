@@ -137,7 +137,7 @@ model khunggio {
 
 model loaisan {
   id          Int      @id @default(autoincrement())              // INT AUTO_INCREMENT PRIMARY KEY
-  tenLoaiSan  String   @db.VarChar(50)                            // VARCHAR(50) NOT NULL
+  tenLoaiSan  String   @db.VarChar(50) @unique                    // VARCHAR(50) NOT NULL
   moTa        String?  @db.Text                                   // TEXT NULL
   trangThai   Int      @db.TinyInt                                // TINYINT NOT NULL
   createdAt   DateTime @default(now())                            // DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -148,7 +148,7 @@ model loaisan {
 
 model loaisanpham {
   id               Int        @id @default(autoincrement())         // INT AUTO_INCREMENT
-  tenLoaiSanPham   String     @db.VarChar(100)                      // VARCHAR(100)
+  tenLoaiSanPham   String     @db.VarChar(100) @unique              // VARCHAR(100)
   moTa             String?    @db.Text                              // TEXT (NULLABLE)
   trangThai        Int        @db.TinyInt                           // TINYINT
   createdAt        DateTime   @default(now())                       // DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -194,7 +194,7 @@ model nhomquyen {
 model san {
   id          Int       @id @default(autoincrement())
   loaiSanId   Int
-  tenSan      String    @db.VarChar(50)         // VARCHAR(50)
+  tenSan      String    @db.VarChar(50) @unique         // VARCHAR(50)
   giaSan      Float     @db.Float               // FLOAT
   moTa        String?   @db.Text                // TEXT (nullable)
   hinhAnh     String?   @db.VarChar(255)        // VARCHAR(255) (nullable)
@@ -213,7 +213,7 @@ model san {
 model sanpham {
   id              Int             @id @default(autoincrement())              // INT AUTO_INCREMENT
   loaiSanPhamId   Int                                                     // FK -> loaisanpham
-  tenSanPham      String          @db.VarChar(100)                          // VARCHAR(100)
+  tenSanPham      String          @db.VarChar(100) @unique                         // VARCHAR(100)
   giaSanPham      Float                                                  // FLOAT
   soLuong         Int                                                    // INT
   donViTinh       String          @db.VarChar(20)                           // VARCHAR(20)

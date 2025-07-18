@@ -1,6 +1,6 @@
 model loaisanpham {
   id               Int        @id @default(autoincrement())         // INT AUTO_INCREMENT
-  tenLoaiSanPham   String     @db.VarChar(100)                      // VARCHAR(100)
+  tenLoaiSanPham   String     @db.VarChar(100) @unique              // VARCHAR(100)
   moTa             String?    @db.Text                              // TEXT (NULLABLE)
   trangThai        Int        @db.TinyInt                           // TINYINT
   createdAt        DateTime   @default(now())                       // DATETIME DEFAULT CURRENT_TIMESTAMP

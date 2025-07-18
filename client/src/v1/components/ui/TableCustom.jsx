@@ -7,9 +7,8 @@ const TableCustom = ({
   return (
     <div className="overflow-auto rounded border border-gray-300">
       <table className="min-w-full table-auto text-xs text-left">
-        <thead className="bg-gray-100 text-gray-700 text-center ">
+        <thead className="bg-gray-100 text-gray-700 text-center dark:bg-gray-800 dark:text-zinc-200">
           <tr>
-            <th className="px-3 py-2 ">STT</th>
             {headers.map((header, index) => (
               <th key={index} className="px-3 py-2 border border-gray-300">
                 {header}
@@ -37,12 +36,9 @@ const TableCustom = ({
             data.map((row, rowIndex) => (
               <tr
                 key={rowIndex}
-                className="hover:bg-gray-50 text-center border-b"
+                className="hover:bg-gray-50 text-center border-b dark:hover:bg-zinc-600"
                 onClick={() => onRowClick?.(rowIndex, row)}
               >
-                <td className="px-3 py-2 border border-gray-300">
-                  {rowIndex + 1}
-                </td>
                 {headers.map((_, colIndex) => (
                   <td
                     key={colIndex}
