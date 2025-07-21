@@ -3,6 +3,10 @@ const TypeYardApi = {
     url: "/loai-san",
     method: "GET",
   },
+  get_details_loaisan: {
+    url: "/loai-san/detail/:id",
+    method: "GET",
+  },
   create_loaisan: {
     url: "/loai-san/create",
     method: "POST",

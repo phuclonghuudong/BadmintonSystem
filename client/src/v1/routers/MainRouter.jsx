@@ -5,7 +5,7 @@ import HomeScreen from "../screen/pages/HomeScreen";
 import MainLayout from "../screen/pages/MainLayout";
 import Personnel from "../screen/pages/Personnel";
 import Product from "../screen/pages/Product";
-import TypeYard from "../screen/pages/TypeYard/TypeYard";
+import TypeYard from "../screen/pages/TypeYard";
 import Yard from "../screen/pages/Yard";
 
 const MainRouter = () => {
